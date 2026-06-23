@@ -24,6 +24,10 @@
       --gray-800:     #1C2B1E;
       --orange:       #F57C00;
       --red:          #C62828;
+      --admin-bg:     #0F1923;
+      --admin-card:   #1A2634;
+      --admin-border: #243040;
+      --admin-accent: #2D8C3E;
       --radius-sm:    8px;
       --radius-md:    16px;
       --radius-lg:    24px;
@@ -46,7 +50,6 @@
       position: relative;
     }
 
-    /* ── BACKGROUND PATTERN ── */
     body::before {
       content: '';
       position: fixed;
@@ -58,7 +61,6 @@
       z-index: 0;
     }
 
-    /* ── GRAIN OVERLAY ── */
     body::after {
       content: '';
       position: fixed;
@@ -68,7 +70,7 @@
       z-index: 0;
     }
 
-    /* ── WRAPPER ── */
+    /* ── WRAPPER PÚBLICO ── */
     .wrapper {
       position: relative;
       z-index: 1;
@@ -81,7 +83,7 @@
       gap: 32px;
     }
 
-    /* ── LOGO AREA ── */
+    /* ── LOGO ── */
     .logo-area {
       display: flex;
       flex-direction: column;
@@ -110,10 +112,7 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
     }
 
-    .logo-mark svg {
-      position: relative;
-      z-index: 1;
-    }
+    .logo-mark svg { position: relative; z-index: 1; }
 
     .logo-name {
       font-family: 'Playfair Display', serif;
@@ -132,7 +131,7 @@
       text-transform: uppercase;
     }
 
-    /* ── CARD ── */
+    /* ── CARD PÚBLICA ── */
     .card {
       width: 100%;
       background: rgba(255,255,255,0.92);
@@ -182,7 +181,6 @@
       line-height: 1.6;
     }
 
-    /* ── DIVIDER ── */
     .divider {
       height: 1px;
       background: linear-gradient(to right, transparent, var(--gray-200), transparent);
@@ -198,9 +196,7 @@
       letter-spacing: 0.2px;
     }
 
-    .input-wrap {
-      position: relative;
-    }
+    .input-wrap { position: relative; }
 
     .input-icon {
       position: absolute;
@@ -241,7 +237,7 @@
       box-shadow: 0 0 0 4px rgba(45,140,62,0.12);
     }
 
-    /* ── BUTTON ── */
+    /* ── BOTÓN ── */
     .btn-validate {
       width: 100%;
       padding: 15px;
@@ -276,15 +272,8 @@
       box-shadow: 0 8px 24px rgba(30,107,46,0.40);
     }
 
-    .btn-validate:active:not(:disabled) {
-      transform: translateY(0);
-    }
-
-    .btn-validate:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
+    .btn-validate:active:not(:disabled) { transform: translateY(0); }
+    .btn-validate:disabled { opacity: 0.7; cursor: not-allowed; }
     .btn-validate .btn-text { position: relative; z-index: 1; }
 
     .btn-spinner {
@@ -301,10 +290,9 @@
 
     .btn-validate.loading .btn-spinner { display: block; }
     .btn-validate.loading .btn-icon { display: none; }
-
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── RESULT BOX ── */
+    /* ── RESULTADO ── */
     .result-box {
       border-radius: var(--radius-md);
       padding: 18px 18px 18px 20px;
@@ -317,21 +305,9 @@
     }
 
     .result-box.show { display: flex; }
-
-    .result-box.success {
-      background: #E8F5E9;
-      border-color: #A5D6A7;
-    }
-
-    .result-box.error {
-      background: #FFEBEE;
-      border-color: #EF9A9A;
-    }
-
-    .result-box.warning {
-      background: #FFF3E0;
-      border-color: #FFCC80;
-    }
+    .result-box.success { background: #E8F5E9; border-color: #A5D6A7; }
+    .result-box.error   { background: #FFEBEE; border-color: #EF9A9A; }
+    .result-box.warning { background: #FFF3E0; border-color: #FFCC80; }
 
     .result-icon {
       flex-shrink: 0;
@@ -361,11 +337,7 @@
     .error   .result-title { color: var(--red); }
     .warning .result-title { color: var(--orange); }
 
-    .result-detail {
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
+    .result-detail { font-size: 13px; line-height: 1.5; }
     .success .result-detail { color: #388E3C; }
     .error   .result-detail { color: #C62828; }
     .warning .result-detail { color: var(--orange); }
@@ -398,7 +370,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── FOOTER INFO ── */
+    /* ── INFO STRIP ── */
     .info-strip {
       display: flex;
       justify-content: center;
@@ -416,7 +388,6 @@
 
     .info-item svg { color: var(--green-main); flex-shrink: 0; }
 
-    /* ── PAGE FOOTER ── */
     .page-footer {
       position: relative;
       z-index: 1;
@@ -426,7 +397,6 @@
       padding-bottom: 16px;
     }
 
-    /* ── CONFETTI CANVAS ── */
     #confetti-canvas {
       position: fixed;
       inset: 0;
@@ -434,14 +404,501 @@
       z-index: 999;
     }
 
-    /* ── PULSE RING on win ── */
     @keyframes pulse-ring {
       0%   { box-shadow: 0 0 0 0   rgba(76,175,80,.50); }
       100% { box-shadow: 0 0 0 18px rgba(76,175,80,0); }
     }
     .card.won { animation: pulse-ring 0.6s ease-out 1; }
 
-    /* ── RESPONSIVE ── */
+    /* ════════════════════════════════════════════
+       PANEL ADMIN — MODAL OVERLAY
+    ════════════════════════════════════════════ */
+    #admin-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: var(--admin-bg);
+      overflow-y: auto;
+      animation: fadeIn 0.2s ease;
+    }
+
+    #admin-overlay.open { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── LOGIN SCREEN ── */
+    #admin-login {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 360px;
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 20px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+
+    .login-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .login-logo .shield {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #1E6B2E, #4CAF50);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(45,140,62,0.4);
+    }
+
+    .login-logo h2 {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .login-logo p {
+      color: #4A6070;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .admin-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #4A6070;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .admin-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: #0F1923;
+      border: 1px solid var(--admin-border);
+      border-radius: 10px;
+      color: #E0E8EE;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      margin-top: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .admin-input:focus {
+      border-color: var(--green-main);
+      box-shadow: 0 0 0 3px rgba(45,140,62,0.20);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #1E6B2E, #2D8C3E);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 14px rgba(45,140,62,0.35);
+    }
+
+    .btn-login:hover { transform: translateY(-1px); opacity: 0.92; }
+
+    .login-error {
+      font-size: 13px;
+      color: #EF5350;
+      text-align: center;
+      display: none;
+      animation: slideUp 0.2s ease;
+    }
+
+    /* ── DASHBOARD ── */
+    #admin-dashboard {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    #admin-dashboard.open { display: flex; }
+
+    /* Top bar */
+    .admin-topbar {
+      background: var(--admin-card);
+      border-bottom: 1px solid var(--admin-border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #1E6B2E, #4CAF50);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .topbar-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #E0E8EE;
+    }
+
+    .topbar-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: rgba(45,140,62,0.2);
+      color: #4CAF50;
+      border: 1px solid rgba(45,140,62,0.3);
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-admin-sm {
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--admin-border);
+      background: transparent;
+      color: #8A9EAE;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-admin-sm:hover { background: rgba(255,255,255,0.05); color: #E0E8EE; }
+
+    .btn-admin-sm.danger:hover { background: rgba(198,40,40,0.15); color: #EF5350; border-color: rgba(198,40,40,0.3); }
+
+    /* Stats row */
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 20px 24px 0;
+    }
+
+    .stat-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #4A6070;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #E0E8EE;
+      line-height: 1;
+    }
+
+    .stat-value.green { color: #4CAF50; }
+    .stat-value.yellow { color: #F5C518; }
+    .stat-value.red { color: #EF5350; }
+
+    .stat-sub {
+      font-size: 11px;
+      color: #4A6070;
+    }
+
+    /* Controls bar */
+    .admin-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px 0;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      max-width: 300px;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #4A6070;
+    }
+
+    .admin-search {
+      width: 100%;
+      padding: 9px 12px 9px 36px;
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 9px;
+      color: #E0E8EE;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .admin-search:focus { border-color: var(--green-main); }
+    .admin-search::placeholder { color: #4A6070; }
+
+    .filter-tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 9px;
+      padding: 3px;
+    }
+
+    .filter-tab {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #4A6070;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .filter-tab.active {
+      background: rgba(45,140,62,0.2);
+      color: #4CAF50;
+    }
+
+    .btn-export {
+      padding: 8px 16px;
+      background: rgba(245,197,24,0.12);
+      border: 1px solid rgba(245,197,24,0.3);
+      border-radius: 9px;
+      color: #F5C518;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-export:hover { background: rgba(245,197,24,0.20); }
+
+    /* Table */
+    .admin-table-wrap {
+      padding: 16px 24px 32px;
+      overflow-x: auto;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 4px;
+    }
+
+    .admin-table thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      color: #4A6070;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .admin-table tbody tr {
+      background: var(--admin-card);
+      border-radius: 10px;
+      transition: background 0.15s;
+    }
+
+    .admin-table tbody tr:hover { background: #1F303F; }
+
+    .admin-table tbody td {
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #C0D0DC;
+      border-top: 1px solid var(--admin-border);
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .admin-table tbody td:first-child {
+      border-left: 1px solid var(--admin-border);
+      border-radius: 10px 0 0 10px;
+    }
+
+    .admin-table tbody td:last-child {
+      border-right: 1px solid var(--admin-border);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .code-pill {
+      font-family: 'Inter', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #E0E8EE;
+      background: #0F1923;
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--admin-border);
+    }
+
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .status-dot.used {
+      background: rgba(239,83,80,0.12);
+      color: #EF5350;
+      border: 1px solid rgba(239,83,80,0.2);
+    }
+
+    .status-dot.available {
+      background: rgba(76,175,80,0.12);
+      color: #4CAF50;
+      border: 1px solid rgba(76,175,80,0.2);
+    }
+
+    .status-dot::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .btn-reset-one {
+      padding: 5px 12px;
+      background: transparent;
+      border: 1px solid rgba(239,83,80,0.3);
+      border-radius: 6px;
+      color: #EF5350;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-reset-one:hover { background: rgba(239,83,80,0.12); }
+    .btn-reset-one:disabled { opacity: 0.3; cursor: default; }
+
+    .prize-cell {
+      max-width: 180px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: #4A6070;
+      font-size: 14px;
+    }
+
+    /* Toast */
+    #admin-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: #1A2634;
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      padding: 12px 18px;
+      color: #E0E8EE;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      display: none;
+      align-items: center;
+      gap: 10px;
+      max-width: 320px;
+      animation: slideUp 0.3s ease;
+    }
+
+    #admin-toast.show { display: flex; }
+    #admin-toast .t-icon { font-size: 16px; }
+
+    /* Responsive admin */
+    @media (max-width: 700px) {
+      .admin-stats { grid-template-columns: repeat(2, 1fr); }
+      .admin-topbar { padding: 12px 16px; }
+      .admin-table-wrap { padding: 12px 12px 32px; }
+      .admin-controls { padding: 12px 12px 0; }
+      .topbar-badge { display: none; }
+    }
+
     @media (max-width: 480px) {
       .card { padding: 28px 20px 24px; }
       .card-title { font-size: 22px; }
@@ -453,27 +910,22 @@
 
 <canvas id="confetti-canvas"></canvas>
 
-<div class="wrapper">
+<!-- ═══════════════════════════════════════════
+     PÁGINA PÚBLICA
+════════════════════════════════════════════ -->
+<div class="wrapper" id="public-page">
 
-  <!-- LOGO -->
   <div class="logo-area">
     <div class="logo-mark">
-      <!-- Ícono: espiga de trigo + canasta → símbolo de bodega -->
       <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Canasta base -->
         <rect x="10" y="30" width="32" height="14" rx="5" fill="rgba(255,255,255,0.95)"/>
         <path d="M12 30 Q26 24 40 30" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/>
-        <!-- Tallo central -->
         <line x1="26" y1="30" x2="26" y2="10" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round"/>
-        <!-- Granos izquierdos -->
-        <ellipse cx="19" cy="18" rx="5" ry="3.2" fill="var(--yellow-main)" transform="rotate(-40 19 18)"/>
-        <ellipse cx="21" cy="13" rx="4.5" ry="3" fill="var(--yellow-main)" transform="rotate(-30 21 13)"/>
-        <!-- Granos derechos -->
-        <ellipse cx="33" cy="18" rx="5" ry="3.2" fill="var(--yellow-main)" transform="rotate(40 33 18)"/>
-        <ellipse cx="31" cy="13" rx="4.5" ry="3" fill="var(--yellow-main)" transform="rotate(30 31 13)"/>
-        <!-- Grano central superior -->
-        <ellipse cx="26" cy="10" rx="4" ry="2.8" fill="var(--yellow-main)"/>
-        <!-- Líneas canasta -->
+        <ellipse cx="19" cy="18" rx="5" ry="3.2" fill="#F5C518" transform="rotate(-40 19 18)"/>
+        <ellipse cx="21" cy="13" rx="4.5" ry="3" fill="#F5C518" transform="rotate(-30 21 13)"/>
+        <ellipse cx="33" cy="18" rx="5" ry="3.2" fill="#F5C518" transform="rotate(40 33 18)"/>
+        <ellipse cx="31" cy="13" rx="4.5" ry="3" fill="#F5C518" transform="rotate(30 31 13)"/>
+        <ellipse cx="26" cy="10" rx="4" ry="2.8" fill="#F5C518"/>
         <line x1="19" y1="30" x2="19" y2="44" stroke="rgba(45,140,62,0.25)" stroke-width="1.2"/>
         <line x1="26" y1="30" x2="26" y2="44" stroke="rgba(45,140,62,0.25)" stroke-width="1.2"/>
         <line x1="33" y1="30" x2="33" y2="44" stroke="rgba(45,140,62,0.25)" stroke-width="1.2"/>
@@ -483,7 +935,6 @@
     <div class="logo-tagline">Tienda de confianza</div>
   </div>
 
-  <!-- CARD -->
   <div class="card" id="main-card">
     <div class="card-header">
       <div class="card-eyebrow"><span>🎁</span> Promoción Especial</div>
@@ -502,16 +953,8 @@
             <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
           </svg>
         </span>
-        <input
-          type="text"
-          id="coupon-input"
-          class="coupon-input"
-          placeholder="Ej. YUTI-001"
-          maxlength="12"
-          autocomplete="off"
-          autocorrect="off"
-          spellcheck="false"
-        />
+        <input type="text" id="coupon-input" class="coupon-input" placeholder="Ej. YUTI-001"
+          maxlength="12" autocomplete="off" autocorrect="off" spellcheck="false"/>
       </div>
     </div>
 
@@ -523,7 +966,6 @@
       <span class="btn-text">Validar Cupón</span>
     </button>
 
-    <!-- RESULT -->
     <div class="result-box" id="result-box">
       <div class="result-icon" id="result-icon"></div>
       <div class="result-body">
@@ -558,69 +1000,241 @@
   <footer class="page-footer">© 2025 Bodega Yuti · Todos los derechos reservados</footer>
 </div>
 
-<script>
-  // ══════════════════════════════════════════════════════════════
-  //  DATA LAYER
-  //  Aquí está la lógica de cupones. Para conectar a una base de
-  //  datos (Supabase, Firebase, etc.) solo reemplaza la función
-  //  lookupCoupon() con una llamada a tu API REST.
-  // ══════════════════════════════════════════════════════════════
 
+<!-- ═══════════════════════════════════════════
+     PANEL ADMIN (oculto)
+════════════════════════════════════════════ -->
+<div id="admin-overlay">
+
+  <!-- LOGIN -->
+  <div id="admin-login">
+    <div class="login-box">
+      <div class="login-logo">
+        <div class="shield">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h2>Panel Admin</h2>
+        <p>Bodega Yuti · Acceso Restringido</p>
+      </div>
+
+      <div>
+        <div class="admin-label">Usuario</div>
+        <input type="text" id="admin-user" class="admin-input" placeholder="admin"
+          autocomplete="off" onkeydown="if(event.key==='Enter') adminLogin()"/>
+      </div>
+
+      <div>
+        <div class="admin-label">Contraseña</div>
+        <input type="password" id="admin-pass" class="admin-input" placeholder="••••••••"
+          onkeydown="if(event.key==='Enter') adminLogin()"/>
+      </div>
+
+      <div class="login-error" id="login-error">Usuario o contraseña incorrectos.</div>
+
+      <button class="btn-login" onclick="adminLogin()">Ingresar al panel</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="admin-dashboard">
+
+    <div class="admin-topbar">
+      <div class="topbar-left">
+        <div class="topbar-logo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="topbar-title">Bodega Yuti</span>
+        <span class="topbar-badge">ADMIN</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-admin-sm" onclick="exportCSV()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar CSV
+        </button>
+        <button class="btn-admin-sm danger" onclick="adminLogout()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Salir
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-stats" id="admin-stats"></div>
+
+    <div class="admin-controls">
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="admin-search" id="admin-search" placeholder="Buscar código o premio…" oninput="renderTable()"/>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all"       onclick="setFilter('all',this)">Todos</button>
+        <button class="filter-tab"        data-filter="available" onclick="setFilter('available',this)">Disponibles</button>
+        <button class="filter-tab"        data-filter="used"      onclick="setFilter('used',this)">Usados</button>
+      </div>
+
+      <button class="btn-export" onclick="confirmResetAll()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.18"/></svg>
+        Resetear todo
+      </button>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Código</th>
+            <th>Premio</th>
+            <th>Estado</th>
+            <th>Canjeado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="admin-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="admin-toast"><span class="t-icon"></span><span id="toast-msg"></span></div>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+  // ══════════════════════════════════════════
+  //  ACCESO SECRETO
+  //  → Haz clic 5 veces seguidas en el logo
+  //  → O ve a la URL con ?admin al final
+  //  CONTRASEÑA: cambia ADMIN_PASS abajo
+  // ══════════════════════════════════════════
+  const ADMIN_USER = 'yuti';
+  const ADMIN_PASS = 'bodega2025';   // ← CAMBIA ESTO
+
+  let logoClickCount = 0;
+  let logoClickTimer = null;
+
+  document.querySelector('.logo-mark').addEventListener('click', () => {
+    logoClickCount++;
+    clearTimeout(logoClickTimer);
+    if (logoClickCount >= 5) {
+      logoClickCount = 0;
+      openAdminOverlay();
+    } else {
+      logoClickTimer = setTimeout(() => logoClickCount = 0, 2000);
+    }
+  });
+
+  // También acceso por URL ?admin
+  if (new URLSearchParams(window.location.search).has('admin')) {
+    openAdminOverlay();
+  }
+
+  function openAdminOverlay() {
+    document.getElementById('admin-overlay').classList.add('open');
+    document.getElementById('admin-login').style.display = 'flex';
+    document.getElementById('admin-dashboard').classList.remove('open');
+    setTimeout(() => document.getElementById('admin-user').focus(), 100);
+  }
+
+  function closeAdminOverlay() {
+    document.getElementById('admin-overlay').classList.remove('open');
+  }
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('admin-overlay').classList.contains('open')) {
+      closeAdminOverlay();
+    }
+  });
+
+  // ── LOGIN ──
+  function adminLogin() {
+    const u = document.getElementById('admin-user').value.trim();
+    const p = document.getElementById('admin-pass').value;
+    const err = document.getElementById('login-error');
+
+    if (u === ADMIN_USER && p === ADMIN_PASS) {
+      err.style.display = 'none';
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('admin-dashboard').classList.add('open');
+      renderStats();
+      renderTable();
+    } else {
+      err.style.display = 'block';
+      document.getElementById('admin-pass').value = '';
+      document.getElementById('admin-pass').focus();
+    }
+  }
+
+  function adminLogout() {
+    document.getElementById('admin-user').value = '';
+    document.getElementById('admin-pass').value = '';
+    closeAdminOverlay();
+  }
+
+  // ══════════════════════════════════════════
+  //  DATOS — 50 CUPONES
+  // ══════════════════════════════════════════
   const COUPONS = {
-    // formato → "CÓDIGO": { prize: "Premio", used: false, usedAt: null }
-    "YUTI001": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI002": { prize: "S/ 10 de descuento",       used: false, usedAt: null },
-    "YUTI003": { prize: "Gaseosa gratis",            used: false, usedAt: null },
-    "YUTI004": { prize: "Bolsa de arroz 1 kg",       used: false, usedAt: null },
-    "YUTI005": { prize: "Aceite 1 litro",            used: false, usedAt: null },
-    "YUTI006": { prize: "Chocolate gratis",          used: false, usedAt: null },
-    "YUTI007": { prize: "Canasta sorpresa",          used: false, usedAt: null },
-    "YUTI008": { prize: "¡Premio mayor de S/ 100!",  used: false, usedAt: null },
-    "YUTI009": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI010": { prize: "Gaseosa gratis",            used: false, usedAt: null },
-    "YUTI011": { prize: "S/ 10 de descuento",       used: false, usedAt: null },
-    "YUTI012": { prize: "Bolsa de arroz 1 kg",       used: false, usedAt: null },
-    "YUTI013": { prize: "Aceite 1 litro",            used: false, usedAt: null },
-    "YUTI014": { prize: "Chocolate gratis",          used: false, usedAt: null },
-    "YUTI015": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI016": { prize: "Canasta sorpresa",          used: false, usedAt: null },
-    "YUTI017": { prize: "S/ 10 de descuento",       used: false, usedAt: null },
-    "YUTI018": { prize: "Gaseosa gratis",            used: false, usedAt: null },
-    "YUTI019": { prize: "Bolsa de arroz 1 kg",       used: false, usedAt: null },
-    "YUTI020": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI021": { prize: "Aceite 1 litro",            used: false, usedAt: null },
-    "YUTI022": { prize: "Chocolate gratis",          used: false, usedAt: null },
-    "YUTI023": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI024": { prize: "Gaseosa gratis",            used: false, usedAt: null },
-    "YUTI025": { prize: "S/ 10 de descuento",       used: false, usedAt: null },
-    "YUTI026": { prize: "Bolsa de arroz 1 kg",       used: false, usedAt: null },
-    "YUTI027": { prize: "Canasta sorpresa",          used: false, usedAt: null },
-    "YUTI028": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI029": { prize: "Aceite 1 litro",            used: false, usedAt: null },
-    "YUTI030": { prize: "Chocolate gratis",          used: false, usedAt: null },
-    "YUTI031": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI032": { prize: "S/ 10 de descuento",       used: false, usedAt: null },
-    "YUTI033": { prize: "Gaseosa gratis",            used: false, usedAt: null },
-    "YUTI034": { prize: "Bolsa de arroz 1 kg",       used: false, usedAt: null },
-    "YUTI035": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI036": { prize: "Aceite 1 litro",            used: false, usedAt: null },
-    "YUTI037": { prize: "Chocolate gratis",          used: false, usedAt: null },
-    "YUTI038": { prize: "S/ 10 de descuento",       used: false, usedAt: null },
-    "YUTI039": { prize: "Gaseosa gratis",            used: false, usedAt: null },
-    "YUTI040": { prize: "Canasta sorpresa",          used: false, usedAt: null },
-    "YUTI041": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI042": { prize: "Bolsa de arroz 1 kg",       used: false, usedAt: null },
-    "YUTI043": { prize: "Aceite 1 litro",            used: false, usedAt: null },
-    "YUTI044": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI045": { prize: "Gaseosa gratis",            used: false, usedAt: null },
-    "YUTI046": { prize: "Chocolate gratis",          used: false, usedAt: null },
-    "YUTI047": { prize: "S/ 10 de descuento",       used: false, usedAt: null },
-    "YUTI048": { prize: "Canasta sorpresa",          used: false, usedAt: null },
-    "YUTI049": { prize: "S/ 5 de descuento",        used: false, usedAt: null },
-    "YUTI050": { prize: "Bolsa de arroz 1 kg",       used: false, usedAt: null },
+    "YUTI001": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI002": { prize: "S/ 10 de descuento",      used: false, usedAt: null },
+    "YUTI003": { prize: "Gaseosa gratis",           used: false, usedAt: null },
+    "YUTI004": { prize: "Bolsa de arroz 1 kg",      used: false, usedAt: null },
+    "YUTI005": { prize: "Aceite 1 litro",           used: false, usedAt: null },
+    "YUTI006": { prize: "Chocolate gratis",         used: false, usedAt: null },
+    "YUTI007": { prize: "Canasta sorpresa",         used: false, usedAt: null },
+    "YUTI008": { prize: "¡Premio mayor S/ 100!",   used: false, usedAt: null },
+    "YUTI009": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI010": { prize: "Gaseosa gratis",           used: false, usedAt: null },
+    "YUTI011": { prize: "S/ 10 de descuento",      used: false, usedAt: null },
+    "YUTI012": { prize: "Bolsa de arroz 1 kg",      used: false, usedAt: null },
+    "YUTI013": { prize: "Aceite 1 litro",           used: false, usedAt: null },
+    "YUTI014": { prize: "Chocolate gratis",         used: false, usedAt: null },
+    "YUTI015": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI016": { prize: "Canasta sorpresa",         used: false, usedAt: null },
+    "YUTI017": { prize: "S/ 10 de descuento",      used: false, usedAt: null },
+    "YUTI018": { prize: "Gaseosa gratis",           used: false, usedAt: null },
+    "YUTI019": { prize: "Bolsa de arroz 1 kg",      used: false, usedAt: null },
+    "YUTI020": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI021": { prize: "Aceite 1 litro",           used: false, usedAt: null },
+    "YUTI022": { prize: "Chocolate gratis",         used: false, usedAt: null },
+    "YUTI023": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI024": { prize: "Gaseosa gratis",           used: false, usedAt: null },
+    "YUTI025": { prize: "S/ 10 de descuento",      used: false, usedAt: null },
+    "YUTI026": { prize: "Bolsa de arroz 1 kg",      used: false, usedAt: null },
+    "YUTI027": { prize: "Canasta sorpresa",         used: false, usedAt: null },
+    "YUTI028": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI029": { prize: "Aceite 1 litro",           used: false, usedAt: null },
+    "YUTI030": { prize: "Chocolate gratis",         used: false, usedAt: null },
+    "YUTI031": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI032": { prize: "S/ 10 de descuento",      used: false, usedAt: null },
+    "YUTI033": { prize: "Gaseosa gratis",           used: false, usedAt: null },
+    "YUTI034": { prize: "Bolsa de arroz 1 kg",      used: false, usedAt: null },
+    "YUTI035": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI036": { prize: "Aceite 1 litro",           used: false, usedAt: null },
+    "YUTI037": { prize: "Chocolate gratis",         used: false, usedAt: null },
+    "YUTI038": { prize: "S/ 10 de descuento",      used: false, usedAt: null },
+    "YUTI039": { prize: "Gaseosa gratis",           used: false, usedAt: null },
+    "YUTI040": { prize: "Canasta sorpresa",         used: false, usedAt: null },
+    "YUTI041": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI042": { prize: "Bolsa de arroz 1 kg",      used: false, usedAt: null },
+    "YUTI043": { prize: "Aceite 1 litro",           used: false, usedAt: null },
+    "YUTI044": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI045": { prize: "Gaseosa gratis",           used: false, usedAt: null },
+    "YUTI046": { prize: "Chocolate gratis",         used: false, usedAt: null },
+    "YUTI047": { prize: "S/ 10 de descuento",      used: false, usedAt: null },
+    "YUTI048": { prize: "Canasta sorpresa",         used: false, usedAt: null },
+    "YUTI049": { prize: "S/ 5 de descuento",       used: false, usedAt: null },
+    "YUTI050": { prize: "Bolsa de arroz 1 kg",      used: false, usedAt: null },
   };
 
-  // Persistencia local (reemplazar con API real para producción)
   function loadState() {
     try {
       const saved = localStorage.getItem('yuti_coupons');
@@ -630,21 +1244,23 @@
           if (COUPONS[k]) Object.assign(COUPONS[k], parsed[k]);
         });
       }
-    } catch(e) { /* silent */ }
+    } catch(e) {}
   }
 
   function saveState() {
     try { localStorage.setItem('yuti_coupons', JSON.stringify(COUPONS)); }
-    catch(e) { /* silent */ }
+    catch(e) {}
   }
 
   loadState();
 
-  // ── INPUT FORMATTING ──
+  // ══════════════════════════════════════════
+  //  LÓGICA PÚBLICA
+  // ══════════════════════════════════════════
   const input = document.getElementById('coupon-input');
+
   input.addEventListener('input', () => {
-    let v = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-    input.value = v;
+    input.value = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
     clearResult();
   });
 
@@ -652,17 +1268,11 @@
     if (e.key === 'Enter') validateCoupon();
   });
 
-  // ── CORE VALIDATION ──
   function validateCoupon() {
     const code = input.value.trim().toUpperCase();
     const btn  = document.getElementById('btn-validate');
+    if (!code) { shakeInput(); return; }
 
-    if (!code) {
-      shakeInput();
-      return;
-    }
-
-    // Simular latencia de red (quitar en producción)
     btn.classList.add('loading');
     btn.disabled = true;
 
@@ -677,47 +1287,37 @@
     const coupon = COUPONS[code];
 
     if (!coupon) {
-      showResult('error',
-        '❌ Cupón no válido',
-        'Este código no existe en nuestra base de datos. Verifica que lo hayas escrito correctamente.',
-        null, null
-      );
+      showResult('error', '❌ Cupón no válido',
+        'Este código no existe. Verifica que lo hayas escrito correctamente.', null, null);
       return;
     }
 
     if (coupon.used) {
-      showResult('warning',
-        '⚠️ Cupón ya utilizado',
-        'Este cupón ya fue canjeado anteriormente.',
-        null, coupon.usedAt
-      );
+      showResult('warning', '⚠️ Cupón ya utilizado',
+        'Este cupón ya fue canjeado anteriormente.', null, coupon.usedAt);
       return;
     }
 
-    // Marcar como usado
     coupon.used   = true;
     coupon.usedAt = new Date().toISOString();
     saveState();
 
-    showResult('success',
-      '🎉 ¡Felicitaciones!',
+    showResult('success', '🎉 ¡Felicitaciones!',
       'Tu cupón es válido. Muestra esta pantalla al cajero para recibir tu premio.',
-      coupon.prize, coupon.usedAt
-    );
+      coupon.prize, coupon.usedAt);
     launchConfetti();
     document.getElementById('main-card').classList.add('won');
     setTimeout(() => document.getElementById('main-card').classList.remove('won'), 700);
   }
 
-  // ── UI HELPERS ──
   function showResult(type, title, detail, prize, timestamp) {
-    const box    = document.getElementById('result-box');
-    const icon   = document.getElementById('result-icon');
-    const tEl    = document.getElementById('result-title');
-    const dEl    = document.getElementById('result-detail');
-    const pSlot  = document.getElementById('prize-slot');
-    const tSlot  = document.getElementById('redeem-time');
-    const tText  = document.getElementById('redeem-time-text');
+    const box   = document.getElementById('result-box');
+    const icon  = document.getElementById('result-icon');
+    const tEl   = document.getElementById('result-title');
+    const dEl   = document.getElementById('result-detail');
+    const pSlot = document.getElementById('prize-slot');
+    const tSlot = document.getElementById('redeem-time');
+    const tText = document.getElementById('redeem-time-text');
 
     box.className = 'result-box show ' + type;
 
@@ -731,17 +1331,12 @@
     tEl.textContent = title;
     dEl.textContent = detail;
 
-    if (prize) {
-      pSlot.innerHTML = `<div class="prize-badge">🎁 ${prize}</div>`;
-    } else {
-      pSlot.innerHTML = '';
-    }
+    pSlot.innerHTML = prize ? `<div class="prize-badge">🎁 ${prize}</div>` : '';
 
     if (timestamp) {
       const d = new Date(timestamp);
       tText.textContent = 'Canjeado el ' + d.toLocaleDateString('es-PE', {
-        day:'2-digit', month:'long', year:'numeric',
-        hour:'2-digit', minute:'2-digit'
+        day:'2-digit', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'
       });
       tSlot.style.display = 'flex';
     } else {
@@ -750,52 +1345,178 @@
   }
 
   function clearResult() {
-    const box = document.getElementById('result-box');
-    box.className = 'result-box';
+    document.getElementById('result-box').className = 'result-box';
   }
 
   function shakeInput() {
-    input.style.animation = 'none';
     input.style.borderColor = '#C62828';
     input.style.boxShadow = '0 0 0 3px rgba(198,40,40,0.15)';
-    input.offsetHeight;
-    setTimeout(() => {
-      input.style.borderColor = '';
-      input.style.boxShadow = '';
-    }, 600);
+    setTimeout(() => { input.style.borderColor = ''; input.style.boxShadow = ''; }, 600);
   }
 
-  // ══════════════════════════════════════════════════════════════
-  //  CONFETTI ENGINE (canvas puro, sin librerías)
-  // ══════════════════════════════════════════════════════════════
+  // ══════════════════════════════════════════
+  //  ADMIN — STATS & TABLE
+  // ══════════════════════════════════════════
+  let currentFilter = 'all';
+
+  function renderStats() {
+    const keys  = Object.keys(COUPONS);
+    const total = keys.length;
+    const used  = keys.filter(k => COUPONS[k].used).length;
+    const avail = total - used;
+    const pct   = Math.round((used / total) * 100);
+
+    document.getElementById('admin-stats').innerHTML = `
+      <div class="stat-card">
+        <div class="stat-label">Total cupones</div>
+        <div class="stat-value">${total}</div>
+        <div class="stat-sub">en la promoción</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Canjeados</div>
+        <div class="stat-value red">${used}</div>
+        <div class="stat-sub">${pct}% del total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Disponibles</div>
+        <div class="stat-value green">${avail}</div>
+        <div class="stat-sub">sin canjear</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Progreso</div>
+        <div class="stat-value yellow">${pct}%</div>
+        <div class="stat-sub">completado</div>
+      </div>
+    `;
+  }
+
+  function setFilter(f, el) {
+    currentFilter = f;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    renderTable();
+  }
+
+  function renderTable() {
+    const q     = (document.getElementById('admin-search').value || '').toLowerCase();
+    const tbody = document.getElementById('admin-tbody');
+    const keys  = Object.keys(COUPONS);
+
+    const filtered = keys.filter(k => {
+      const c = COUPONS[k];
+      if (currentFilter === 'used'      && !c.used) return false;
+      if (currentFilter === 'available' &&  c.used) return false;
+      if (q && !k.toLowerCase().includes(q) && !c.prize.toLowerCase().includes(q)) return false;
+      return true;
+    });
+
+    if (!filtered.length) {
+      tbody.innerHTML = `<tr><td colspan="6" class="no-results">No se encontraron cupones.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map((k, i) => {
+      const c = COUPONS[k];
+      const dateStr = c.usedAt
+        ? new Date(c.usedAt).toLocaleDateString('es-PE', {
+            day:'2-digit', month:'2-digit', year:'2-digit',
+            hour:'2-digit', minute:'2-digit'
+          })
+        : '—';
+
+      return `
+        <tr>
+          <td style="color:#4A6070;font-size:12px">${i+1}</td>
+          <td><span class="code-pill">${k}</span></td>
+          <td class="prize-cell">${c.prize}</td>
+          <td><span class="status-dot ${c.used ? 'used' : 'available'}">${c.used ? 'Canjeado' : 'Disponible'}</span></td>
+          <td style="font-size:12px;color:${c.usedAt ? '#C0D0DC' : '#4A6070'}">${dateStr}</td>
+          <td>
+            <button class="btn-reset-one" onclick="resetOne('${k}')" ${!c.used ? 'disabled' : ''}>
+              Resetear
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function resetOne(code) {
+    if (!COUPONS[code]) return;
+    COUPONS[code].used   = false;
+    COUPONS[code].usedAt = null;
+    saveState();
+    renderStats();
+    renderTable();
+    showToast('✅', `Cupón ${code} restablecido.`);
+  }
+
+  function confirmResetAll() {
+    const used = Object.keys(COUPONS).filter(k => COUPONS[k].used).length;
+    if (used === 0) { showToast('ℹ️', 'No hay cupones canjeados para resetear.'); return; }
+    if (!confirm(`¿Resetear los ${used} cupones canjeados? Esta acción no se puede deshacer.`)) return;
+    Object.keys(COUPONS).forEach(k => { COUPONS[k].used = false; COUPONS[k].usedAt = null; });
+    saveState();
+    renderStats();
+    renderTable();
+    showToast('🔄', `${used} cupones restablecidos.`);
+  }
+
+  function exportCSV() {
+    const header = ['Código', 'Premio', 'Estado', 'Fecha de canje'];
+    const rows   = Object.entries(COUPONS).map(([k, c]) => [
+      k,
+      `"${c.prize}"`,
+      c.used ? 'Canjeado' : 'Disponible',
+      c.usedAt ? new Date(c.usedAt).toLocaleString('es-PE') : ''
+    ]);
+
+    const csv  = [header, ...rows].map(r => r.join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `yuti-cupones-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('📥', 'CSV exportado correctamente.');
+  }
+
+  // ── TOAST ──
+  let toastTimer = null;
+
+  function showToast(icon, msg) {
+    const toast = document.getElementById('admin-toast');
+    document.getElementById('toast-msg').textContent = msg;
+    toast.querySelector('.t-icon').textContent = icon;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  // ══════════════════════════════════════════
+  //  CONFETTI
+  // ══════════════════════════════════════════
   const canvas = document.getElementById('confetti-canvas');
   const ctx    = canvas.getContext('2d');
-  let particles = [];
-  let animId    = null;
-
+  let particles = [], animId = null;
   const COLORS = ['#2D8C3E','#4CAF50','#F5C518','#FFFFFF','#1E6B2E','#81C784','#FFD54F'];
 
   function launchConfetti() {
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
     particles = [];
-
     for (let i = 0; i < 140; i++) {
       particles.push({
-        x:  Math.random() * canvas.width,
-        y:  Math.random() * canvas.height * 0.4 - canvas.height * 0.3,
-        vx: (Math.random() - 0.5) * 5,
-        vy: Math.random() * 3 + 2,
-        w:  Math.random() * 9 + 5,
-        h:  Math.random() * 5 + 3,
-        r:  Math.random() * Math.PI * 2,
-        rv: (Math.random() - 0.5) * 0.15,
-        c:  COLORS[Math.floor(Math.random() * COLORS.length)],
-        op: 1,
-        g:  Math.random() * 0.08 + 0.04,
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height * 0.4 - canvas.height * 0.3,
+        vx: (Math.random() - 0.5) * 5, vy: Math.random() * 3 + 2,
+        w: Math.random() * 9 + 5, h: Math.random() * 5 + 3,
+        r: Math.random() * Math.PI * 2, rv: (Math.random() - 0.5) * 0.15,
+        c: COLORS[Math.floor(Math.random() * COLORS.length)],
+        op: 1, g: Math.random() * 0.08 + 0.04,
       });
     }
-
     if (animId) cancelAnimationFrame(animId);
     drawConfetti();
   }
@@ -803,26 +1524,19 @@
   function drawConfetti() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     let alive = false;
-
     particles.forEach(p => {
-      p.x  += p.vx;
-      p.y  += p.vy;
-      p.vy += p.g;
-      p.r  += p.rv;
-      p.op -= 0.008;
-
+      p.x += p.vx; p.y += p.vy; p.vy += p.g;
+      p.r += p.rv; p.op -= 0.008;
       if (p.op > 0 && p.y < canvas.height + 20) {
         alive = true;
         ctx.save();
         ctx.globalAlpha = Math.max(0, p.op);
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.r);
+        ctx.translate(p.x, p.y); ctx.rotate(p.r);
         ctx.fillStyle = p.c;
         ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
         ctx.restore();
       }
     });
-
     if (alive) animId = requestAnimationFrame(drawConfetti);
     else ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
